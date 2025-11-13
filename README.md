@@ -116,11 +116,9 @@ Mejoras de experiencia de usuario
 
 Licencia
 Este proyecto se distribuye bajo la licencia Apache 2.0, que permite
-```
 -Uso personal y comercial
 -Modificación
 -Distribución
 -Sub-licenciamiento
 
 Siempre que se mantenga la atribución al autor y las cláusulas legales incluidas
-```
