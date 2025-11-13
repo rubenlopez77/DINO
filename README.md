@@ -10,9 +10,9 @@ Analiza features Gherkin, pasos existentes, requisitos y resultados de ejecució
 
 DINO es la capa IA que se apoya en el modelo BAM y los artefactos Gherkin para orquestar calidad a lo largo del ciclo de automatización.
 
-<p align =center>
-![DINO Logo](./dino.png)
-</p>
+
+![DINO Logo](dino.png)
+
 
 ## La fuerza de BAM!, la inteligencia de DINO 
 Por si te lo preguntas, y sino lo voy a poner igual 😄 Los nombres **DINO** y **BAM** (de Bam-Bam)  se inspiran en el universo de Los Picapiedra.
