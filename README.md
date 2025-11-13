@@ -83,7 +83,7 @@ El CLI:
 - Seguridad: Nunca sobrescribir archivos del usuario sin confirmación
 
 ## 4. Roadmap del Proyecto
-- **Fase 0 **– Base técnica (v0.0.x)
+- **Fase 0* *– Base técnica (v0.0.x)
 Setup inicial del CLI
 Comando init
 Reglas BAM básicas (sin IA)
