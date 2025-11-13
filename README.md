@@ -25,7 +25,7 @@ Por si te lo preguntas, y sino lo voy a poner igual 😄 Los nombres **DINO** y 
 
 ## **📌 Preámbulo**
 
-Este proyecto nace como una** iniciativa experimental **para explorar cómo la Inteligencia Artificial puede potenciar la automatización de pruebas bajo el modelo **BAM** (Behavior Annotation Model), un enfoque creado para maximizar:
+Este proyecto nace como una **iniciativa experimental ** para explorar cómo la Inteligencia Artificial puede potenciar la automatización de pruebas bajo el modelo **BAM** (Behavior Annotation Model), un enfoque creado para maximizar:
 
 - **Trazabilidad** real entre requisitos, features y ejecución.
 - **Mantenibilidad** de suites automatizadas.
