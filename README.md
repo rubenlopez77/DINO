@@ -1,21 +1,24 @@
-# 🦕 DINO: Diseño Funcional & Roadmap
+## 🧩 1. Introducción
 
-Declarative Intelligence Orchestration for QAs
+DINO es un agente inteligente local diseñado para trabajar junto al modelo BAM (Behavior Annotation Model), ampliando sus capacidades mediante IA sin comprometer la privacidad del proyecto.
 
-DINO es un agente inteligente impulsado por IA diseñado para generar, validar y orquestar artefactos de prueba declarativos dentro del ecosistema BAM (Behavior Annotation Model).
+No es un sustituto del QA, ni un generador automático de suites completas.
 
-Analiza features Gherkin, pasos existentes, requisitos y resultados de ejecución para ofrecer tests inteligentes, trazabilidad mejorada y procesos QA más coherentes y automatizados.
-
-```Cucumber (Qué) → BAM (Cómo declarativo) → DINO (Orquestación inteligente)```
-
-DINO es la capa IA que se apoya en el modelo BAM y los artefactos Gherkin para orquestar calidad a lo largo del ciclo de automatización.
-
+Es un orquestador inteligente, que acelera tareas repetitivas y mejora la coherencia y calidad del diseño de pruebas.
 
 <p align="center">
   <img src="./dino.png" alt="DINO Logo" width="240">
 </p>
 
+![DINO](https://img.shields.io/badge/DINO-Local_AI_Assistant-blueviolet?logo=testcafe&logoColor=white&style=flat-square)![Local Only](https://img.shields.io/badge/Privacy-100%25_Local-orange?style=flat-square)![BAM Compatible](https://img.shields.io/badge/Works_with-BAM_Framework-blue?style=flat-square)
 
+
+```
+Cucumber (qué validar)
+→ BAM (cómo declararlo)
+→ DINO (cómo orquestarlo con inteligencia)
+```
+La relación entre BAM y DINO es simbiótica:
 
 ## La fuerza de BAM!, la inteligencia de DINO 
 Por si te lo preguntas, y sino lo voy a poner igual 😄 Los nombres **DINO** y **BAM** (de Bam-Bam)  se inspiran en el universo de Los Picapiedra.
@@ -23,102 +26,174 @@ Por si te lo preguntas, y sino lo voy a poner igual 😄 Los nombres **DINO** y 
     BAM = Ejecución simple, robusta y predecible (sólo da porrazos!)
     DINO = Orquestación ágil e inteligente (siempre ayudando!)
 
-## **📌 Preámbulo**
 
-Este proyecto nace como una **iniciativa experimental ** para explorar cómo la Inteligencia Artificial puede potenciar la automatización de pruebas bajo el modelo **BAM** (Behavior Annotation Model), un enfoque creado para maximizar:
+## 🧪 2. Preámbulo del proyecto
 
-- **Trazabilidad** real entre requisitos, features y ejecución.
-- **Mantenibilidad** de suites automatizadas.
-- **Robustez** y reproducibilidad, eliminando await en tests y delegando la asincronía en el Runner.
-- **Calidad** estructural, mediante reglas claras validadas por una librería de normas.
+DINO nace como una iniciativa experimental para explorar el potencial de IA on-premise aplicada a automatización QA moderna:
 
-El objetivo de este CLI es convertirse en un agente inteligente local, capaz de:
+- Sin enviar datos a la nube
+- Sin depender de APIs externas
+- Manteniendo control total del proyecto
+- Funciona como un sidecar inteligente capaz de:
+- Analizar features, steps, requisitos y resultados
+- Detectar inconsistencias y huecos de cobertura
+- Proponer steps BAM declarativos
+- Generar documentación viva
+- Validar el cumplimiento de normas BAM internas
+- Ayudar a construir mejor trazabilidad real (BMS)
 
-- Analizar proyectos BAM/Playwright.
-- Generar steps declarativos BAM desde features Gherkin.
-- Detectar huecos de cobertura (“gaps”).
-- Validar coherencia entre requisitos y ejecución (“QA del QA”).
-- Generar documentación viva.
+Se trata de un Proof of Concept, orientado a mostrar visión arquitectónica, capacidad técnica y uso responsable de IA en QA.
 
-Este repositorio es una prueba de concepto pública, diseñada para demostrar capacidad técnica, visión QA y uso responsable de IA aplicada a automatización.
+## 🧠 3. Estado actual del proyecto
 
----
+🚧 Proyecto en fase inicial (PoC)
 
-# **1. Visión del Proyecto**
+🧠 Diseñado para trabajar con modelos IA locales (Ollama, LM Studio, Llama.cpp…)
 
-**DINO** es una herramienta de consola desarrollada en **TypeScript**, diseñada para operar como un sidecar inteligente sobre proyectos BAM/Playwright.
+🔒 Privacidad total (sin cloud)
 
-El CLI:
+💬 Asistencia, no sustitución
 
-- Se integra con modelos LLM **on-prem** (Gemma, Llama, etc.).  
-- Ofrece reglas deterministas BAM que garantizan calidad estructural.  
-- Usa análisis contextual (RAG ligero) para comprender el proyecto. 
-- Genera código TypeScript listo para ser consumido por la suite de pruebas.  
+🧩 Enfocado en integrarse con proyectos BAM/Playwright
+
+## 🎯 4. Objetivos funcionales 
+
+Estos son los objetivos funcionales reales del proyecto, alineados con el roadmap:
+
+### ✔ 4.1. Generar automáticamente steps/tests BAM desde features Gherkin
+
+Esta es la función clave de DINO.
+
+DINO analiza el texto Gherkin y sugiere:
+- El método de Page que debe usarse
+- El componente adecuado (Button, Modal, Wait, Navigation…)
+- El nombre declarativo del step
+- La estructura BAM correcta (sin await, usando this.getPage())
+- El patrón recomendado según el plugin ESLint BAM-UX
+
+Ejemplo realista:
+
+Entrada:
+``` gherkin
+Scenario: User searches for a product
+  When the user searches for "Laptop"
+```
+Salida sugerida:
+``` ts
+When('the user searches for {string}', function (query: string) {
+  const user = this.getPage(HomePage);
+  user.searchesFor(query);
+});
+```
+
+### ✔ 4.2. Decorar automáticamente features Gherkin con metadata BMS
+
+Transforma un escenario simple en uno trazable:
+
+Entrada:
+``` gherkin
+Scenario: User logs in successfully`
+```
+Salida sugerida:
+
+``` gherkin
+@ID=TC-002
+@Title=Valid_login_shows_username
+@Description=Valid_user_logs_in_and_sees_his_name_in_the_navbar
+@Module=Authentication
+@Component=Login
+@Pre=User_not_authenticated
+@AC1=Welcome_message_includes_username
+@AC2=Login_modal_should_disappear_after_success
+@Data=credentials.valid
+@Priority=HIGH
+@Risk=LOW
+Scenario: User logs in successfully
+```
 
 
----
+### ✔ 4.3. Validar que las pruebas cumplen las normas BAM
 
-# **2. Objetivos Funcionales**
+Incluye:
+- No usar await en tests
+- Estructura declarativa estricta
+- Uso correcto de this.getPage()
+- Naming DSL BAM
+- Validación BMS
+- Consistencia entre módulos/componentes
 
-✔ Generar automáticamente steps/tests BAM desde features Gherkin.
+### ✔ 4.4. Detectar gaps entre requisitos, features y pasos
 
-✔ Validar que las pruebas cumplen las normas BAM (sin await, runner correcto, etc.).
+DINO señala huecos como:
+- Requisitos sin test
+- Features sin AC
+- AC no cubiertos
+- Steps no utilizados
+- Components orphan
+- Tests sin prioridad o sin riesgo
 
-✔ Detectar huecos entre requisitos, features y pasos implementados.
+### ✔ 4.5. Construir documentación viva
+A partir de:
+- Features con metadata
+- JSON de ejecución
+- Relación módulo/componente
+- Riesgos, prioridades
 
-✔ Crear documentación viva (Test Plan, trazabilidad, matrices de cobertura).
+DINO genera:
 
-✔ Reducir el tiempo de creación de tests y aumentar la calidad del diseño.
-
-✔ Mantener la privacidad usando únicamente modelos IA locales (sin cloud).
-
----
-
-## 3. Requisitos No Funcionales
-
-- Tecnología: TypeScript + Node.js
-- Compatibilidad: Windows / Linux
-- Privacidad: Sin dependencias cloud — todo local / on-prem
-- Extensibilidad: Configurable, modular y desacoplado del core BAM
-- Seguridad: Nunca sobrescribir archivos del usuario sin confirmación
-
-## 4. Roadmap del Proyecto
-- **Fase 0* *– Base técnica (v0.0.x)
-Setup inicial del CLI
-Comando init
-Reglas BAM básicas (sin IA)
-Comando validate-project
-
-- **Fase 1** – Generación de Steps desde Gherkin (v0.1.x)
-	Integración con LLM local
-	Prompts BAM
-	Comando generate-from-features
-	Validación automática de steps generados
+- Matrices de cobertura
+- Test Plans
+- Resúmenes ejecutivos para PO
+- Mapas de calidad por componente
 
 
-- **Fase 2** – Contexto y RAG ligero (v0.2.x)
-		Indexación de features, steps y requisitos
-		Detectar patrones existentes
-		Detección básica de gaps
-		
-- **Fase 3** – QA del QA (v0.3.x)
-	Validación cruzada: requisitos ↔ Gherkin ↔ steps ↔ ejecución
-	Reportes de coherencia y calidad
-- **Fase 4** – Documentación Viva (v1.0)
-Generación automática de Test Plans
-Matrices de cobertura
-Resumen funcional y técnico
-- **Fase 5** – Empaquetado y UX
-Versionado
-Empaquetado como .exe
-Banner CLI
-Mejoras de experiencia de usuario
+### ✔ 4.6. Análisis de trazas de ejecución BAM
 
-Licencia
-Este proyecto se distribuye bajo la licencia Apache 2.0, que permite
--Uso personal y comercial
--Modificación
--Distribución
--Sub-licenciamiento
+Entrada: execution.json de BAM.
 
-Siempre que se mantenga la atribución al autor y las cláusulas legales incluidas
+DINO puede:
+- Identificar el componente que falló
+- Sugerir la causa probable
+- Detectar patrones de flakiness
+- Proponer mejoras en el componente afectado
+- Revisar tiempos, selectores, acciones y transiciones
+
+
+
+## ⚙️5. Requisitos no funcionales
+
+Tecnología: TypeScript + Node.js
+Compatibilidad: Windows / Linux
+Privacidad: 100% local, sin Internet
+Extensibilidad: modular y configurado por comandos
+Seguridad: nunca sobrescribir archivos sin confirmación
+
+## 🧩 6. Roadmap del proyecto
+Fase 0 – Base técnica (actual)
+- CLI funcional
+- Comando validate-project
+- Reglas BAM básicas sin IA
+
+Fase 1 – Generación de steps desde Gherkin
+- Integración con modelos IA locales
+- Prompts BAM específicos
+- Generación de métodos, steps y naming DSL
+
+Fase 2 – RAG ligero
+- Indexación de código y metadata
+- Análisis contextual del proyecto
+- Detección de patrones y duplicados
+
+Fase 3 – QA del QA
+- Validación avanzada
+- Comparación REQ ↔ Gherkin ↔ steps ↔ ejecución
+
+Fase 4 – Documentación Viva
+- Test Plan
+- Cobertura
+- Resumen de calidad
+
+Fase 5 – Distribución
+- Empaquetado como .exe
+- Banner CLI
+- Mejoras UX
